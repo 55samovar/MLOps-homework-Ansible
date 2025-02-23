@@ -1,7 +1,7 @@
 # MLOps-homework-Ansible
 Моё домашнее задание по теме "Ansible"
 
-Для запуска необходимо ввести команду
+Для запуска необходимо поместить файлы homework.yaml и inventory.ini в одну директорию, в этой же директории создать файл test.txt с необходиым текстом и ввести команду из этой же директории
 ```
 ansible-playbook -i inventory.ini homework.yaml
 ```
