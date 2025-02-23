@@ -1,0 +1,44 @@
+- name: Homework Playbook
+  hosts: netology_ml
+  become: yes
+
+  vars:
+    packages:
+      - net-tools
+      - git
+      - tree
+      - htop
+      - mc
+      - vim
+    users:
+      - devops_1
+      - test_1
+
+  tasks:
+    - name: Ping_host
+      ansible.builtin.ping:
+
+    - name: Update_package
+      ansible.builtin.apt:
+        update_cache: yes
+
+    - name: Install_packages
+      ansible.builtin.apt:
+        name: "{{ packages }}"
+        state: present
+
+    - name: Copy_file
+      ansible.builtin.copy:
+        src: ./test.txt
+        dest: /home/test.txt
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Create_users_and_folders
+      ansible.builtin.user:
+        name: "{{ item }}"
+        home: "/home/{{ item }}"
+        state: present
+        create_home: yes
+      loop: "{{ users }}"
